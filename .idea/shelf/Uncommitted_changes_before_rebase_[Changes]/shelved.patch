@@ -1,0 +1,28 @@
+Index: backend/app.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from flask import Flask, request, jsonify\r\nimport requests\r\nfrom flask_mysqldb import MySQL\r\n\r\napp = Flask(__name__)\r\n\r\n# Database configuration\r\napp.config['MYSQL_HOST'] = 'localhost'\r\napp.config['MYSQL_USER'] = 'root'  # Your MySQL username\r\napp.config['MYSQL_PASSWORD'] = 'admin123'  # Your MySQL password\r\napp.config['MYSQL_DB'] = 'sunscreen'\r\nAPI_KEY = \"44869d147a17986a38fcc08b77a43e1a\"\r\nmysql = MySQL(app)\r\n\r\n# Example: Get users from the database\r\n@app.route('/api/users', methods=['GET'])\r\ndef get_users():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM app_user\")\r\n    users = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(users)\r\n\r\n@app.route('/api/clothing', methods=['GET'])\r\ndef get_clothing():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM clothing\")\r\n    clothing = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(clothing)\r\n\r\n@app.route('/api/recommendation', methods=['GET'])\r\ndef clothing_recommendation():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM clothing_recommendation\")\r\n    recommended_clothing = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(recommended_clothing)\r\n\r\n@app.route('/api/forcast', methods=['GET'])\r\ndef forcast_trend():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM forecast_trend\")\r\n    forcast = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(forcast)\r\n\r\n@app.route('/api/incidence', methods=['GET'])\r\ndef incidence():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM incidence\")\r\n    incident = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(incident)\r\n\r\n@app.route('/api/location', methods=['GET'])\r\ndef get_locations():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM location\")\r\n    location = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(location)\r\n\r\n@app.route('/api/mortality', methods=['GET'])\r\ndef get_mortality():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM mortality\")\r\n    mortality = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(mortality)\r\n\r\n@app.route('/api/remainder', methods=['GET'])\r\ndef get_remainders():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM reminder\")\r\n    mortality = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(mortality)\r\n\r\n@app.route('/api/skintone', methods=['GET'])\r\ndef get_skintone():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM skintone\")\r\n    skintone = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(skintone)\r\n\r\n@app.route('/api/sunscreenrec', methods=['GET'])\r\ndef get_sun_recommendation():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM sunscreen_recommendation\")\r\n    sunscreen_recommendation = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(sunscreen_recommendation)\r\n\r\napp.route('api/user/remainder', methods=['GET'])\r\ndef user_remainder():\r\n    cursor = mysql.connection.cursor()\r\n    cursor.execute(\"SELECT * FROM user_reminder\")\r\n    remainder = cursor.fetchall()\r\n    cursor.close()\r\n    return jsonify(remainder)\r\n\r\n\r\n\r\ndef get_uv_index(api_key, lat, lon):\r\n    url = (\r\n        \"https://api.openweathermap.org/data/3.0/onecall\"\r\n        f\"?lat={lat}&lon={lon}&appid={api_key}\"\r\n    )\r\n    response = requests.get(url)\r\n    if response.status_code != 200:\r\n        return None\r\n    data = response.json()\r\n    return data.get(\"current\", {}).get(\"uvi\")\r\n\r\n\r\n\r\n@app.route(\"/uv-index\", methods=[\"GET\"])\r\ndef uv_index():\r\n    location = request.get_json()\r\n    lat = location['lat']\r\n    lon = location['lon']\r\n\r\n\r\n    if lat is None or lon is None:\r\n        return jsonify({\"error\": \"Missing latitude or longitude parameters\"}), 400\r\n\r\n    uv_val = get_uv_index(API_KEY, lat, lon)\r\n    if uv_val is not None:\r\n        return jsonify({\"UV Index\": uv_val})\r\n    else:\r\n        return jsonify({\"error\": \"Failed to retrieve UV index\"}), 500\r\n\r\n\r\n\r\nif __name__ == '__main__':\r\n    app.run(debug=True)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/app.py b/backend/app.py
+--- a/backend/app.py	(revision 50a1e2ce186195a5e8b2bcf3827155225e96846c)
++++ b/backend/app.py	(date 1741930873013)
+@@ -132,6 +132,17 @@
+     else:
+         return jsonify({"error": "Failed to retrieve UV index"}), 500
+ 
++@app.route("/select_location", methods=["GET"])
++def get_location():
++    cursor = mysql.connection.cursor()
++    suburb = "Clayton South"
++    cursor.execute("SELECT location_long,location_lat FROM location WHERE location_suburb = %s", (suburb,))
++    cordinates = cursor.fetchall()
++    print(cordinates[0])
++    #print(cordinates[1])
++    cursor.close()
++
++
+ 
+ 
+ if __name__ == '__main__':
