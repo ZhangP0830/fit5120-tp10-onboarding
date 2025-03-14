@@ -11,16 +11,12 @@
           v-model:selectedKeys="current"
           mode="horizontal"
           :items="items"
+          @click="clickMenu"
         />
       </a-col>
-      <a-col flex="150px">
+      <a-col flex="200px">
         <div class="location-select">
-          <a-select
-            v-model:value="userLocation"
-            :size="size"
-            style="width: 150px"
-            :options="options"
-          ></a-select>
+          <SurburbSelect />
         </div>
       </a-col>
     </a-row>
@@ -29,78 +25,62 @@
 <script setup>
 import { h, ref } from "vue";
 import {
+  ExperimentFilled,
   HomeFilled,
-  AppstoreOutlined,
-  SettingOutlined,
+  SignalFilled,
+  SkinFilled,
 } from "@ant-design/icons-vue";
+import { useRouter } from "vue-router";
+import SurburbSelect from "@/components/SurburbSelect.vue";
 
-const current = ref(["mail"]);
+const router = useRouter();
+
+const clickMenu = (menuItem) => {
+  const key = menuItem.key; // 提取 key
+  router.push({
+    path: key,
+  });
+};
+
+const current = ref(["/"]);
+router.afterEach((to) => {
+  current.value = [to.path];
+});
 const items = ref([
   {
-    key: "mail",
+    key: "/",
     icon: () => h(HomeFilled),
     label: "Home",
     title: "Home",
   },
   {
-    key: "app",
-    icon: () => h(AppstoreOutlined),
-    label: "Navigation Two",
-    title: "Navigation Two",
+    key: "/uv-impact",
+    icon: () => h(SignalFilled),
+    label: "UV Impact",
+    title: "UV Impact",
   },
   {
-    key: "sub1",
-    icon: () => h(SettingOutlined),
-    label: "Navigation Three - Submenu",
-    title: "Navigation Three - Submenu",
-    children: [
-      {
-        type: "group",
-        label: "Item 1",
-        children: [
-          {
-            label: "Option 1",
-            key: "setting:1",
-          },
-          {
-            label: "Option 2",
-            key: "setting:2",
-          },
-        ],
-      },
-      {
-        type: "group",
-        label: "Item 2",
-        children: [
-          {
-            label: "Option 3",
-            key: "setting:3",
-          },
-          {
-            label: "Option 4",
-            key: "setting:4",
-          },
-        ],
-      },
-    ],
+    key: "/sun-screen",
+    icon: () => h(ExperimentFilled),
+    label: "Sun Screen",
+    title: "Sun Screen",
   },
   {
-    key: "alipay",
-    label: h(
-      "a",
-      {
-        href: "https://antdv.com",
-        target: "_blank",
-      },
-      "Navigation Four - Link"
-    ),
-    title: "Navigation Four - Link",
+    key: "/cloth-advice",
+    icon: () => h(SkinFilled),
+    label: "Cloth Advice",
+    title: "Cloth Advice",
+  },
+  {
+    key: "/reminder",
+    icon: () => h(SkinFilled),
+    label: "reminder",
+    title: "reminder",
   },
 ]);
 /*
  * Select user location
  * */
-const userLocation = ref("");
 </script>
 
 <style scoped>
@@ -111,9 +91,5 @@ const userLocation = ref("");
 
 .logo {
   height: 64px;
-}
-
-.location-select {
-  margin-right: 10px;
 }
 </style>
