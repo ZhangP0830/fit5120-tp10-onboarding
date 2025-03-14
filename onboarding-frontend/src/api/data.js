@@ -37,3 +37,23 @@ export const getUvIndexByLocation = async ({ suburb }) => {
     return null;
   }
 };
+
+export const getSkinCancerIncidenceData = async () => {
+  try {
+    const response = await myAxios.get("/api/skin_cancer/incidence_rate");
+    console.log("API 响应数据:", response); // ✅ 确保 Axios 收到正确的 JSON
+    return response.data; // ✅ 只返回 data 部分，避免 Vue 解析失败
+  } catch (error) {
+    console.error("获取皮肤癌数据失败:", error);
+    return [];
+  }
+};
+
+export const getSkinCancerMortalityData = async () => {
+  try {
+    const response = await myAxios.get("/api/skin_cancer/mortality_rate");
+    return response.data;
+  } catch (error) {
+    return [];
+  }
+};
