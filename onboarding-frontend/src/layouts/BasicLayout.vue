@@ -8,7 +8,9 @@
       </a-layout-header>
       <!-- Content of the website -->
       <a-layout-content class="content" :style="contentStyle">
-        <router-view />
+        <div class="content-container">
+          <router-view />
+        </div>
       </a-layout-content>
       <!-- Footer of the website -->
       <a-layout-footer class="footer" :style="footerStyle">
@@ -34,9 +36,17 @@ import GlobalHeader from "@/components/GlobalHeader.vue";
 }
 
 #basic-layout .content {
-  padding: 20px;
-  margin-bottom: 20px;
-  baclkground: linear-gradient(to right, white, gray);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 10%;
+  background: white;
+}
+
+.content-container {
+  width: 100%;
+  max-width: 1000px; /* 限制内容最大宽度，防止过宽 */
 }
 
 #basic-layout .header {
