@@ -109,3 +109,19 @@ export const getWeatherForecast = async (lat, lon) => {
     return [];
   }
 };
+
+export const getUvIndex = async (lat, lon) => {
+  try {
+    const response = await myAxios.get(`/api/uv-index?lat=${lat}&lon=${lon}`);
+
+    if (response.data["uv_index"] !== undefined) {
+      return response.data["uv_index"];
+    } else {
+      console.warn("No UV Index data found.");
+      return null;
+    }
+  } catch (error) {
+    console.error("Failed to fetch weather data:", error);
+    return [];
+  }
+};
