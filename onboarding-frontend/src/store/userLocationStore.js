@@ -6,6 +6,7 @@ export const userLocationStore = defineStore("userLocation", {
       Suburb: "Not Set",
       lat: null,
       lon: null,
+      uvIndex: null,
     },
   }),
   getters: {
@@ -16,12 +17,20 @@ export const userLocationStore = defineStore("userLocation", {
     hasLocation(state) {
       return state.userLocation.Suburb !== "Not Set";
     },
+
+    getUVIndex(state) {
+      return state.userLocation.uvIndex;
+    },
   },
   actions: {
     setUserLocation({ Suburb, lat, lon }) {
       if (Suburb !== undefined) this.userLocation.Suburb = Suburb;
       if (lat !== undefined) this.userLocation.lat = lat;
       if (lon !== undefined) this.userLocation.lon = lon;
+    },
+
+    setIndex(index) {
+      if (index !== undefined) this.userLocation.uvIndex = index;
     },
   },
 });

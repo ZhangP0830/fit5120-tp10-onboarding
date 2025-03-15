@@ -156,6 +156,22 @@ def get_uv_index(api_key, lat, lon):
     return data.get("current", {}).get("uvi")
 
 
+@app.route("/api/uv-index", methods=["GET"])
+def get_uv_index():
+    lat = request.args.get('lat')
+    lon = request.args.get('lon')
+
+    if not lat or not lon:
+        return jsonify({"error": "Missing latitude or longitude"}), 400
+    try:
+        response = requests.get("https://api.openweathermap.org/data/3.0/onecall"
+                                f"?lat={lat}&lon={lon}&appid={API_KEY}")
+        data = response.json().get("current", {}).get("uvi")
+        return jsonify({"uv_index": (data)})
+    except Exception as e:
+        print(f"Error: {e}")
+
+
 @app.route("/uv-index", methods=["GET"])
 def uv_index():
     location = request.get_json()
@@ -167,6 +183,7 @@ def uv_index():
 
     uv_val = get_uv_index(API_KEY, lat, lon)
     if uv_val is not None:
+        print({"UV Index": uv_val})
         return jsonify({"UV Index": uv_val})
     else:
         return jsonify({"error": "Failed to retrieve UV index"}), 500
@@ -236,19 +253,12 @@ def get_skin_cancer_mortality():
 def get_heat_forecast():
     lat = request.args.get('lat')
     lon = request.args.get('lon')
-    print(lat, lon)
     if not lat or not lon:
         return jsonify({"error": "Missing latitude or longitude"}), 400
 
     try:
-        # 请求 OpenWeather One Call API
-        response = requests.get(OW_URL, params={
-            "lat": lat,
-            "lon": lon,
-            "exclude": "daily,minutely,current",  # 只获取小时级数据
-            "appid": API_KEY,
-            "units": "metric"  # 温度使用摄氏度
-        })
+        response = requests.get("https://api.openweathermap.org/data/3.0/onecall"
+                                f"?lat={lat}&lon={lon}&appid={API_KEY}&units=metric")
         data = response.json()
         print(data)
         forecast = [
