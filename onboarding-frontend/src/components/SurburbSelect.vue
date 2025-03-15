@@ -2,7 +2,7 @@
   <a-select
     v-model:value="value"
     show-search
-    placeholder="Select a person"
+    placeholder="Select a suburb"
     style="width: 200px"
     :options="options"
     :filter-option="filterOption"
@@ -12,9 +12,10 @@
   ></a-select>
 </template>
 
-<script setup lang="js">
+<script setup>
 import { nextTick, onMounted, ref, watch } from "vue";
 import { userLocationStore } from "@/store/userLocationStore";
+import { fetchLocationData } from "@/api/data";
 
 const options = ref([]);
 const value = ref(null);
@@ -29,37 +30,62 @@ const loadOptions = async () => {
       .map((item) => item.trim())
       .filter((item) => item)
       .map((item) => ({ label: item, value: item }));
-    console.log(options.value);
+    console.log("Loaded options:", options.value);
   } catch (error) {
     console.error("Error loading options:", error);
   }
 };
 
-onMounted(() => {
-  loadOptions();
-});
-
-const handleChange = value => {
-  console.log(`selected ${value}`);
+const handleChange = async (suburb) => {
+  console.log(`Selected: ${suburb}`);
+  value.value = suburb;
+  userLocation.setUserLocation({ Suburb: suburb });
+  const locationData = await fetchLocationData(suburb);
+  if (locationData) {
+    await nextTick();
+    userLocation.setUserLocation(locationData);
+    console.log("Updated user location:", userLocation.userLocation);
+    console.log(userLocation.userLocation);
+  } else {
+    console.warn("No location data found.");
+  }
 };
+
 const handleBlur = () => {
   console.log("blur");
 };
+
 const handleFocus = () => {
   console.log("focus");
 };
+
+/**
+ * 过滤搜索框输入
+ */
 const filterOption = (input, option) => {
-  return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+  return option.value.toLowerCase().includes(input.toLowerCase());
 };
 
-watch(value, async (newValue) => {
-  if (newValue.length > 0) {
-    await nextTick();
-    userLocation.setUserLocation({
-      Suburb: newValue[2] || "Not Set"
-    });
+// 页面加载时初始化 suburb 选项，并默认选择全局变量的 suburb
+onMounted(async () => {
+  await loadOptions(); // ✅ 确保 options 加载完毕
+  console.log("Options loaded:", options.value);
+
+  if (userLocation.userLocation.Suburb !== "Not Set") {
+    value.value = userLocation.userLocation.Suburb;
+    console.log("Default selected value:", value.value);
   }
 });
+
+watch(
+  () => userLocation.userLocation.Suburb,
+  (newSuburb) => {
+    if (newSuburb !== "Not Set") {
+      value.value = newSuburb;
+    }
+  },
+  { deep: true }
+);
 </script>
 
 <style scoped></style>
