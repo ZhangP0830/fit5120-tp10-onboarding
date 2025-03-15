@@ -2,9 +2,10 @@ from flask import Flask, request, jsonify
 import requests
 import pymysql
 from flask_cors import CORS
+from flask_cors import cross_origin
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -12,6 +13,7 @@ app.config['MYSQL_PASSWORD'] = 'admin123'
 app.config['MYSQL_DB'] = 'sunscreen'
 
 pymysql.install_as_MySQLdb()
+
 
 def get_db_connection():
     return pymysql.connect(
@@ -22,11 +24,15 @@ def get_db_connection():
         cursorclass=pymysql.cursors.DictCursor
     )
 
+
 API_KEY = "44869d147a17986a38fcc08b77a43e1a"
+OW_URL = "https://api.openweathermap.org/data/3.0/onecall?"
+
 
 @app.route('/')
 def home():
     return jsonify({"message": "欢迎使用 Flask API！"})
+
 
 @app.route('/api/users', methods=['GET'])
 def get_users():
@@ -37,6 +43,7 @@ def get_users():
     connection.close()
     return jsonify(users)
 
+
 @app.route('/api/clothing', methods=['GET'])
 def get_clothing():
     connection = get_db_connection()
@@ -45,6 +52,7 @@ def get_clothing():
         clothing = cursor.fetchall()
     connection.close()
     return jsonify(clothing)
+
 
 @app.route('/api/recommendation', methods=['GET'])
 def clothing_recommendation():
@@ -55,6 +63,7 @@ def clothing_recommendation():
     connection.close()
     return jsonify(recommended_clothing)
 
+
 @app.route('/api/forecast', methods=['GET'])
 def forecast_trend():
     connection = get_db_connection()
@@ -63,6 +72,7 @@ def forecast_trend():
         forecast = cursor.fetchall()
     connection.close()
     return jsonify(forecast)
+
 
 @app.route('/api/incidence', methods=['GET'])
 def incidence():
@@ -83,6 +93,7 @@ def get_locations():
     connection.close()
     return jsonify(location)
 
+
 @app.route('/api/mortality', methods=['GET'])
 def get_mortality():
     connection = get_db_connection()
@@ -102,6 +113,7 @@ def get_remainders():
     connection.close()
     return jsonify(remainders)
 
+
 @app.route('/api/skintone', methods=['GET'])
 def get_skintone():
     connection = get_db_connection()
@@ -111,6 +123,7 @@ def get_skintone():
     connection.close()
     return jsonify(skintone)
 
+
 @app.route('/api/sunscreenrec', methods=['GET'])
 def get_sun_recommendation():
     connection = get_db_connection()
@@ -119,6 +132,7 @@ def get_sun_recommendation():
         sunscreen_recommendation = cursor.fetchall()
     connection.close()
     return jsonify(sunscreen_recommendation)
+
 
 @app.route('/api/user/remainder', methods=['GET'])
 def user_remainder():
@@ -158,23 +172,43 @@ def uv_index():
         return jsonify({"error": "Failed to retrieve UV index"}), 500
 
 
-@app.route("/select_location", methods=["GET"])
+@app.route("/api/select_location", methods=["GET"])
+@cross_origin()
 def get_location():
-    connection = get_db_connection()
-    suburb = "Clayton South"
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT location_long, location_lat FROM location WHERE location_suburb = %s", (suburb,))
-        coordinates = cursor.fetchone()
-    connection.close()
+    try:
+        suburb = request.args.get("suburb")
 
-    if coordinates:
-        return jsonify({"longitude": coordinates['location_long'], "latitude": coordinates['location_lat']})
-    else:
-        return jsonify({"error": "Location not found"}), 404
+        if not suburb:
+            return jsonify({"error": "Missing suburb parameter"}), 400
+
+        connection = get_db_connection()
+        if not connection:
+            return jsonify({"error": "Database connection failed"}), 500
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT location_long, location_lat FROM location WHERE location_suburb = %s",
+                (suburb,)
+            )
+            result = cursor.fetchone()
+            print(f"Database query result: {result}", flush=True)
+
+        connection.close()
+
+        if result:
+            return jsonify({"lon": result["location_long"], "lat": result["location_lat"]})
+        else:
+            return jsonify({"error": "Location not found"}), 404
+
+    except Exception as e:
+        print(f"Unexpected error: {e}", flush=True)
+        return jsonify({"error": "Internal Server Error"}), 500
+
 
 # Api to get the skin cancer incidence data
 # P
 @app.route('/api/skin_cancer/incidence_rate', methods=['GET'])
+@cross_origin()
 def get_skin_cancer_incidence():
     connection = get_db_connection()
     with connection.cursor() as cursor:
@@ -183,10 +217,12 @@ def get_skin_cancer_incidence():
     connection.close()
     return jsonify(data)
 
+
 # Api to get the skin cancer mortality data
 # P
 @app.route('/api/skin_cancer/mortality_rate', methods=['GET'])
-def get_skin_cancer_():
+@cross_origin()
+def get_skin_cancer_mortality():
     connection = get_db_connection()
     with connection.cursor() as cursor:
         cursor.execute("SELECT year, sex, mortality_rate FROM skin_cancer_data ORDER BY year;")
@@ -194,5 +230,43 @@ def get_skin_cancer_():
     connection.close()
     return jsonify(data)
 
+
+@app.route('/api/heat_forecast', methods=['GET'])
+@cross_origin()
+def get_heat_forecast():
+    lat = request.args.get('lat')
+    lon = request.args.get('lon')
+    print(lat, lon)
+    if not lat or not lon:
+        return jsonify({"error": "Missing latitude or longitude"}), 400
+
+    try:
+        # 请求 OpenWeather One Call API
+        response = requests.get(OW_URL, params={
+            "lat": lat,
+            "lon": lon,
+            "exclude": "daily,minutely,current",  # 只获取小时级数据
+            "appid": API_KEY,
+            "units": "metric"  # 温度使用摄氏度
+        })
+        data = response.json()
+        print(data)
+        forecast = [
+            {
+                "time": hour["dt"],  # Unix 时间戳
+                "temperature": hour["temp"],
+                "weather": hour["weather"][0]["main"] if "weather" in hour and hour["weather"] else "Unknown",
+                "description": hour["weather"][0]["description"] if "weather" in hour and hour[
+                    "weather"] else "No description"
+            }
+            for hour in data["hourly"][:6]  # 取最近 6 小时数据
+        ]
+        print(forecast)
+        return jsonify(forecast)
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+
+
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port=5000)

@@ -1,28 +1,27 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
 
 export const userLocationStore = defineStore("userLocation", {
   state: () => ({
-    userLocation: ref({
+    userLocation: {
       Suburb: "Not Set",
-    }),
+      lat: null,
+      lon: null,
+    },
   }),
   getters: {
-    // 返回一个 Map 结构，包含所有地址信息
     addressMap(state) {
       return state.userLocation;
     },
 
     hasLocation(state) {
-      if (state.userLocation.Suburb === "Not Set") {
-        return false;
-      }
-      return true;
+      return state.userLocation.Suburb !== "Not Set";
     },
   },
   actions: {
-    setUserLocation(location) {
-      this.userLocation = location;
+    setUserLocation({ Suburb, lat, lon }) {
+      if (Suburb !== undefined) this.userLocation.Suburb = Suburb;
+      if (lat !== undefined) this.userLocation.lat = lat;
+      if (lon !== undefined) this.userLocation.lon = lon;
     },
   },
 });
