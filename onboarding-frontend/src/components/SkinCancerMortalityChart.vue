@@ -58,7 +58,7 @@ export default {
         tooltip: { trigger: "axis" },
         legend: { data: ["Male", "Female"], bottom: 0 },
         xAxis: { type: "category", data: years },
-        yAxis: { type: "value", name: "Mortality Rate(Per 100,000)" },
+        yAxis: { type: "value", name: "Mortality Rate(Per 100k)" },
         series: [
           {
             name: "Male",

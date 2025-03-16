@@ -60,22 +60,16 @@ const items = ref([
     title: "UV Impact",
   },
   {
-    key: "/sun-screen",
+    key: "/sunscreen",
     icon: () => h(ExperimentFilled),
-    label: "Sun Screen",
-    title: "Sun Screen",
+    label: "Sunscreen",
+    title: "Sunscreen",
   },
   {
     key: "/cloth-advice",
     icon: () => h(SkinFilled),
     label: "Cloth Advice",
     title: "Cloth Advice",
-  },
-  {
-    key: "/reminder",
-    icon: () => h(SkinFilled),
-    label: "reminder",
-    title: "reminder",
   },
 ]);
 /*

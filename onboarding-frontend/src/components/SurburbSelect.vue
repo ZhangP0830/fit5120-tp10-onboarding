@@ -2,12 +2,13 @@
   <a-select
     v-model:value="value"
     show-search
+    :default-active-first-option="false"
+    :show-arrow="false"
+    :not-found-content="null"
     placeholder="Select a suburb"
     style="width: 200px"
     :options="options"
     :filter-option="filterOption"
-    @focus="handleFocus"
-    @blur="handleBlur"
     @change="handleChange"
   ></a-select>
 </template>
@@ -15,7 +16,7 @@
 <script setup>
 import { nextTick, onMounted, ref, watch } from "vue";
 import { userLocationStore } from "@/store/userLocationStore";
-import { fetchLocationData } from "@/api/data";
+import { fetchLocationData, getUvIndex } from "@/api/data";
 
 const options = ref([]);
 const value = ref(null);
@@ -30,7 +31,6 @@ const loadOptions = async () => {
       .map((item) => item.trim())
       .filter((item) => item)
       .map((item) => ({ label: item, value: item }));
-    console.log("Loaded options:", options.value);
   } catch (error) {
     console.error("Error loading options:", error);
   }
@@ -44,32 +44,33 @@ const handleChange = async (suburb) => {
   if (locationData) {
     await nextTick();
     userLocation.setUserLocation(locationData);
-    console.log("Updated user location:", userLocation.userLocation);
-    console.log(userLocation.userLocation);
   } else {
     console.warn("No location data found.");
   }
+  await nextTick();
+
+  const lat = userLocation.userLocation.lat;
+  const lon = userLocation.userLocation.lon;
+  console.log(lat, lon);
+  if (lat && lon) {
+    const uv_index = await getUvIndex(lat, lon);
+    if (uv_index !== null) {
+      userLocation.setIndex(uv_index);
+    } else {
+      userLocation.setIndex(null);
+    }
+  } else {
+    console.warn("Latitude or longitude is missing, cannot fetch UV Index.");
+  }
+  console.log("Updated user location:", userLocation.userLocation);
 };
 
-const handleBlur = () => {
-  console.log("blur");
-};
-
-const handleFocus = () => {
-  console.log("focus");
-};
-
-/**
- * 过滤搜索框输入
- */
 const filterOption = (input, option) => {
   return option.value.toLowerCase().includes(input.toLowerCase());
 };
 
-// 页面加载时初始化 suburb 选项，并默认选择全局变量的 suburb
 onMounted(async () => {
-  await loadOptions(); // ✅ 确保 options 加载完毕
-  console.log("Options loaded:", options.value);
+  await loadOptions();
 
   if (userLocation.userLocation.Suburb !== "Not Set") {
     value.value = userLocation.userLocation.Suburb;

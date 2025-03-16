@@ -3,7 +3,7 @@ import HomePage from "@/pages/HomePage.vue";
 import UvImpactPage from "@/pages/UvImpactPage.vue";
 import ClothAdvicePage from "@/pages/ClothAdvicePage.vue";
 import SunScreenPage from "@/pages/SunScreenPage.vue";
-import ReminderPage from "@/pages/ReminderPage.vue";
+import ReminderSetPage from "@/pages/ReminderSetPage.vue";
 
 const routes = [
   {
@@ -17,8 +17,8 @@ const routes = [
     component: UvImpactPage,
   },
   {
-    path: "/sun-screen",
-    name: "sun-screen",
+    path: "/sunscreen",
+    name: "sunscreen",
     component: SunScreenPage,
   },
   {
@@ -27,9 +27,9 @@ const routes = [
     component: ClothAdvicePage,
   },
   {
-    path: "/reminder",
+    path: "/sunscreen/reminder",
     name: "reminder",
-    component: ReminderPage,
+    component: ReminderSetPage,
   },
 ];
 
