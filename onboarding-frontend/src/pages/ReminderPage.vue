@@ -10,8 +10,6 @@
       <a-form-item label="Select Time">
         <a-time-picker v-model="selectedTime" format="HH:mm" />
       </a-form-item>
-
-      <!-- 开启提醒 -->
       <a-button
         type="primary"
         @click="toggleReminder"

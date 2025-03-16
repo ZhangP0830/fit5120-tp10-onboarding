@@ -11,11 +11,13 @@
   <SkintoneSelect />
   <h2>Personal Recommendations</h2>
   <SunProtectionCard />
+  <ReminderButton />
 </template>
 
 <script setup lang="js">
 import SkintoneSelect from "@/components/SkintoneSelect.vue";
 import SunProtectionCard from "@/components/SunProtectionCard.vue";
+import ReminderButton from "@/components/ReminderButton.vue";
 </script>
 
 <style scoped></style>
