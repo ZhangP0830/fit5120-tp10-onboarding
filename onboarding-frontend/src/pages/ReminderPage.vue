@@ -1,12 +1,9 @@
 <template>
   <div class="container">
     <a-card title="Sunscreen Reminder" class="card">
-      <!-- 选择位置 -->
       <a-form-item label="Select Location">
         <a-input v-model="selectedLocation" placeholder="Enter your location" />
       </a-form-item>
-
-      <!-- 选择外出时间 -->
       <a-form-item label="Select Time">
         <a-time-picker v-model="selectedTime" format="HH:mm" />
       </a-form-item>
@@ -17,8 +14,6 @@
       >
         {{ reminderOn ? "Turn Off Reminder" : "Turn On Reminder" }}
       </a-button>
-
-      <!-- 提醒状态 -->
       <div v-if="reminderOn" class="reminder-info">
         Reminder is ON. You will be notified 2 hours before and every 2 hours.
       </div>
