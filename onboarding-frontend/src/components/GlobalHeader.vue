@@ -36,7 +36,7 @@ import SurburbSelect from "@/components/SurburbSelect.vue";
 const router = useRouter();
 
 const clickMenu = (menuItem) => {
-  const key = menuItem.key; // 提取 key
+  const key = menuItem.key;
   router.push({
     path: key,
   });

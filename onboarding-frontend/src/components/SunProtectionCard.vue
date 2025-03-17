@@ -16,10 +16,7 @@ const userInformation = userInformationStore();
 const sunProtectionAdvice = computed(() => {
   const uv_index = Number(userLocation.userLocation.uvIndex);
   const skintone = Number(userInformation.userInformation.Skintone);
-  console.log("uv_index: ", uv_index, "  ", "skintone: ", skintone);
   var number = 7;
-  console.log(skintone >= 3);
-  console.log(uv_index >= 1);
   if (uv_index == null || skintone == null) {
     return "Please select your location and skintone.";
   }
@@ -35,7 +32,7 @@ const sunProtectionAdvice = computed(() => {
 
 <style scoped>
 .card {
-  width: 300px;
+  width: 600px;
   padding: 20px;
   border-radius: 10px;
   background: white;

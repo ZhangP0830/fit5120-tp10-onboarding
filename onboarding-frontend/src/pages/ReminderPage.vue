@@ -63,12 +63,10 @@ export default {
       const selectedDate = new Date(now);
       selectedDate.setHours(selectedHour, selectedMinute, 0, 0);
 
-      // 提前2小时提醒
       const twoHoursBefore = new Date(selectedDate);
       twoHoursBefore.setHours(selectedHour - 2);
       this.scheduleNotification(twoHoursBefore, "Apply sunscreen in 2 hours!");
 
-      // 每2小时提醒
       for (let i = 0; i < 6; i++) {
         const reminderTime = new Date(selectedDate);
         reminderTime.setHours(selectedHour + i * 2);

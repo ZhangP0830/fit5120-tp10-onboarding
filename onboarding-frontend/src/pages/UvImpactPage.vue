@@ -8,16 +8,11 @@
         <SkinCancerMortalityChart />
       </div>
     </div>
-
-    <div class="heatForecast">
-      <HeatForecastChart />
-    </div>
   </div>
 </template>
 
 <script setup lang="js">
 
-import HeatForecastChart from "@/components/HeatForecastChart.vue";
 import SkinCancerIncidenceChart from "@/components/SkinCancerIncidenceChart.vue";
 import SkinCancerMortalityChart from "@/components/SkinCancerMortalityChart.vue";
 </script>

@@ -10,9 +10,8 @@ import { getWeatherForecast } from "@/api/data";
 
 const heatForecastChart = ref(null);
 const weatherData = ref([]);
-const store = userLocationStore(); // 获取全局 Store
+const store = userLocationStore();
 
-// 获取天气数据
 const fetchWeather = async () => {
   try {
     const lat = store.userLocation.lat;
@@ -24,9 +23,6 @@ const fetchWeather = async () => {
     }
 
     const response = await getWeatherForecast(lat, lon);
-    console.log("*****************");
-    console.log(response);
-    console.log("*****************");
     weatherData.value = response;
 
     updateChart();
@@ -35,7 +31,6 @@ const fetchWeather = async () => {
   }
 };
 
-// 更新 ECharts
 const updateChart = () => {
   if (heatForecastChart.value) {
     const chart = echarts.init(heatForecastChart.value);
@@ -61,7 +56,6 @@ const updateChart = () => {
   }
 };
 
-// 监听 `lat` 和 `lon` 变化，自动更新天气数据
 watch(
   () => [store.userLocation.lat, store.userLocation.lon],
   () => {
@@ -69,7 +63,6 @@ watch(
   }
 );
 
-// 组件挂载时获取数据
 onMounted(() => {
   fetchWeather();
 });

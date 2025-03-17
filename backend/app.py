@@ -269,7 +269,7 @@ def get_heat_forecast():
                 "description": hour["weather"][0]["description"] if "weather" in hour and hour[
                     "weather"] else "No description"
             }
-            for hour in data["hourly"][:6]  # 取最近 6 小时数据
+            for hour in data["hourly"][:6]
         ]
         print(forecast)
         return jsonify(forecast)
