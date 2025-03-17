@@ -1,8 +1,5 @@
 import myAxios from "@/request";
 
-/**
- * Collect states uv index
- */
 export const getStatesUvIndex = async () => {
   try {
     const res = await myAxios.request({
@@ -16,13 +13,6 @@ export const getStatesUvIndex = async () => {
   }
 };
 
-/**
- *
- * @param states
- * @param city
- * @param suburb
- * @returns {Promise<*|null>}
- */
 export const getUvIndexByLocation = async ({ suburb }) => {
   try {
     const res = await myAxios.request({
