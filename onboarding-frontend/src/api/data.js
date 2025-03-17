@@ -28,7 +28,7 @@ export const getUvIndexByLocation = async ({ suburb }) => {
     const res = await myAxios.request({
       url: "/uv-index",
       method: "GET",
-      params: { suburb }, // 直接传递对象，Axios 会自动转换为查询参数
+      params: { suburb },
     });
 
     return res?.data || null;
@@ -41,10 +41,8 @@ export const getUvIndexByLocation = async ({ suburb }) => {
 export const getSkinCancerIncidenceData = async () => {
   try {
     const response = await myAxios.get("/api/skin_cancer/incidence_rate");
-    console.log("API 响应数据:", response); // ✅ 确保 Axios 收到正确的 JSON
-    return response.data; // ✅ 只返回 data 部分，避免 Vue 解析失败
+    return response.data;
   } catch (error) {
-    console.error("获取皮肤癌数据失败:", error);
     return [];
   }
 };
@@ -58,11 +56,6 @@ export const getSkinCancerMortalityData = async () => {
   }
 };
 
-/**
- * 通过 suburb 获取对应的经纬度信息
- * @param {string} suburb - 需要查询的地区
- * @returns {Promise<Object>} - { lon, lat } 或 { error }
- */
 export const fetchLocationData = async (suburb) => {
   try {
     const response = await myAxios.get(`/api/select_location?suburb=${suburb}`);

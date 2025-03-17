@@ -1,8 +1,8 @@
 <template>
   <div>
     <div
-      ref="uvImpactChart"
-      id="uvimpact-chart"
+      ref="skinCanerIncidenceChart"
+      id="skinCanerIncidenceChart"
       style="width: 100%; height: 400px"
     ></div>
   </div>
@@ -24,7 +24,7 @@ export default {
   },
   beforeUnmount() {
     if (this.chart) {
-      this.chart.dispose(); // 释放 ECharts 资源
+      this.chart.dispose();
       this.chart = null;
     }
   },
@@ -32,17 +32,17 @@ export default {
     async fetchData() {
       this.skinCancerData = await getSkinCancerIncidenceData();
       console.log(this.skinCancerData);
-      await this.$nextTick(); // 确保 DOM 已渲染
+      await this.$nextTick();
       this.drawChart();
     },
     drawChart() {
-      if (!this.$refs.uvImpactChart) {
+      if (!this.$refs.skinCanerIncidenceChart) {
         console.error("ECharts error：DOM null！");
         return;
       }
 
       if (!this.chart) {
-        this.chart = echarts.init(this.$refs.uvImpactChart);
+        this.chart = echarts.init(this.$refs.skinCanerIncidenceChart);
       }
 
       const years = [...new Set(this.skinCancerData.map((item) => item.year))];

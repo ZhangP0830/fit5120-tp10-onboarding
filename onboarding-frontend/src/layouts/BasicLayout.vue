@@ -46,7 +46,7 @@ import GlobalHeader from "@/components/GlobalHeader.vue";
 
 .content-container {
   width: 100%;
-  max-width: 1000px; /* 限制内容最大宽度，防止过宽 */
+  max-width: 1000px;
 }
 
 #basic-layout .header {

@@ -69,7 +69,7 @@ const setReminder = () => {
 
 const scheduleNotifications = (start, end) => {
   const now = dayjs();
-  let firstReminderTime = start.subtract(30, "minute"); // 默认提前 30 分钟提醒
+  let firstReminderTime = start.subtract(30, "minute");
 
   if (firstReminderTime.isBefore(now)) {
     firstReminderTime = start;
