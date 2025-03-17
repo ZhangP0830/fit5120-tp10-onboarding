@@ -4,11 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22067d88-20fe-44fc-a5db-0f460f252e20" name="Changes" comment="added backend code to main branch">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="22067d88-20fe-44fc-a5db-0f460f252e20" name="Changes" comment="added sql code">
+      <change afterPath="$PROJECT_DIR$/onboarding-frontend/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/onboarding-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/onboarding-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/Template.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/api/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/api/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/assets/states.js" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/assets/states.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/GlobalHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/GlobalHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/HeatForecastChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/HeatForecastChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/HelloWorld.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/ReminderButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/ReminderButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/ReminderFloatButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/ReminderFloatButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/SkinCancerImpactChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/SkinCancerImpactChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/SkinCancerIncidenceChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/SkinCancerIncidenceChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/SkinCancerMortalityChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/SkinCancerMortalityChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/SkintoneSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/SkintoneSelect.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/StateUvIndexChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/StateUvIndexChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/SunProtectionCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/SunProtectionCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/SurburbSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/SurburbSelect.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/components/UvVisual.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/components/UvVisual.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/layouts/BasicLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/layouts/BasicLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/pages/ClothAdvicePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/pages/ClothAdvicePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/pages/HomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/pages/HomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/pages/ReminderPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/pages/ReminderPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/pages/ReminderSetPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/pages/ReminderSetPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/pages/SunScreenPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/pages/SunScreenPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/pages/UvImpactPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/pages/UvImpactPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/store/reminderStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/store/reminderStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/store/userInformationStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/store/userInformationStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/store/userLocationStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/store/userLocationStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/views/AboutView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/views/AboutView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/onboarding-frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/onboarding-frontend/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +52,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -130,7 +164,8 @@
       <workItem from="1741839185734" duration="19778000" />
       <workItem from="1741932184621" duration="1276000" />
       <workItem from="1742002983781" duration="4181000" />
-      <workItem from="1742043913136" duration="118000" />
+      <workItem from="1742043913136" duration="959000" />
+      <workItem from="1742099449552" duration="7955000" />
     </task>
     <task id="LOCAL-00001" summary="added python code to make api calls to frontend.">
       <option name="closed" value="true" />
@@ -156,7 +191,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741932733412</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added sql code">
+      <option name="closed" value="true" />
+      <created>1742044074637</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742044074637</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added sql code">
+      <option name="closed" value="true" />
+      <created>1742044273721</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742044273721</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +228,7 @@
     <MESSAGE value="added python code to make api calls to frontend." />
     <MESSAGE value="Updated readme with instructions for the database and backend." />
     <MESSAGE value="added backend code to main branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="added backend code to main branch" />
+    <MESSAGE value="added sql code" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sql code" />
   </component>
 </project>

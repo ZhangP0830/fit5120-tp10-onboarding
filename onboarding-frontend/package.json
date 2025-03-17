@@ -1,7 +1,9 @@
+
 {
   "name": "onboarding-frontend",
   "version": "0.1.0",
   "private": true,
+  "main": "src/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -30,3 +32,4 @@
     "prettier": "^2.8.8"
   }
 }
+
