@@ -29,6 +29,7 @@ import {
   HomeFilled,
   SignalFilled,
   SkinFilled,
+  SmileFilled,
 } from "@ant-design/icons-vue";
 import { useRouter } from "vue-router";
 import SurburbSelect from "@/components/SurburbSelect.vue";
@@ -62,14 +63,20 @@ const items = ref([
   {
     key: "/sunscreen",
     icon: () => h(ExperimentFilled),
-    label: "Sunscreen",
-    title: "Sunscreen",
+    label: "Sunscreen Reminder",
+    title: "Sunscreen Reminder",
   },
   {
     key: "/cloth-advice",
     icon: () => h(SkinFilled),
     label: "Cloth Advice",
     title: "Cloth Advice",
+  },
+  {
+    key: "/skin-tone",
+    icon: () => h(SmileFilled),
+    label: "Skin Tone",
+    title: "Skin Tone",
   },
 ]);
 /*

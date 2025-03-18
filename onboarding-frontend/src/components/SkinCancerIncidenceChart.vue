@@ -31,7 +31,6 @@ export default {
   methods: {
     async fetchData() {
       this.skinCancerData = await getSkinCancerIncidenceData();
-      console.log(this.skinCancerData);
       await this.$nextTick();
       this.drawChart();
     },
@@ -54,11 +53,30 @@ export default {
         .map((d) => d.incidence_rate);
 
       const option = {
-        title: { text: "Skin Cancer Incidence", left: "center" },
-        tooltip: { trigger: "axis" },
+        title: { text: "Melanoma Incidence", left: "center" },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: { type: "cross" },
+          formatter: (params) => {
+            let tooltipText = `<strong>Year: ${params[0].axisValue}</strong><br/>`;
+            params.forEach((item) => {
+              tooltipText += `${item.marker} <strong>${item.seriesName}:</strong> ${item.data} per 100k<br/>`;
+            });
+            return tooltipText;
+          },
+        },
+
+        toolbox: {
+          feature: {
+            dataView: { show: true, readOnly: false },
+            restore: { show: true },
+            saveAsImage: { show: true },
+          },
+        },
+
         legend: { data: ["Male", "Female"], bottom: 0 },
         xAxis: { type: "category", data: years },
-        yAxis: { type: "value", name: "Incidence Rate(Per 100k)" },
+        yAxis: { type: "value", name: "Rate(Per 100k)" },
         series: [
           {
             name: "Male",

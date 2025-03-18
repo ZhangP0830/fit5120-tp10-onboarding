@@ -36,13 +36,16 @@ const updateChart = () => {
     const chart = echarts.init(heatForecastChart.value);
 
     const option = {
-      title: { text: "Forecast of Heat" },
       tooltip: { trigger: "axis" },
       xAxis: {
         type: "category",
         data: weatherData.value.map((d) => d.time),
+        name: "Time",
       },
-      yAxis: { type: "value" },
+      yAxis: {
+        type: "value",
+        name: "Temperature (°C)",
+      },
       series: [
         {
           data: weatherData.value.map((d) => d.temperature),

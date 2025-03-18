@@ -263,7 +263,7 @@ def get_heat_forecast():
         print(data)
         forecast = [
             {
-                "time": hour["dt"],  # Unix 时间戳
+                "time": hour["dt"],
                 "temperature": hour["temp"],
                 "weather": hour["weather"][0]["main"] if "weather" in hour and hour["weather"] else "Unknown",
                 "description": hour["weather"][0]["description"] if "weather" in hour and hour[
