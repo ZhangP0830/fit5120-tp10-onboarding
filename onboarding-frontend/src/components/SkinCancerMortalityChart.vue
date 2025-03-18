@@ -21,6 +21,7 @@ export default {
   },
   async mounted() {
     await this.fetchData();
+    this.$nextTick(() => this.drawChart());
   },
   beforeUnmount() {
     if (this.chart) {
@@ -54,8 +55,20 @@ export default {
         .map((d) => d.mortality_rate);
 
       const option = {
-        title: { text: "Skin Cancer Mortality", left: "center" },
-        tooltip: { trigger: "axis" },
+        title: { text: "Melanoma Mortality", left: "center" },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+          },
+        },
+        toolbox: {
+          feature: {
+            dataView: { show: true, readOnly: false },
+            restore: { show: true },
+            saveAsImage: { show: true },
+          },
+        },
         legend: { data: ["Male", "Female"], bottom: 0 },
         xAxis: { type: "category", data: years },
         yAxis: { type: "value", name: "Mortality Rate(Per 100k)" },

@@ -6,8 +6,8 @@ export const useReminderStore = defineStore("reminder", {
     reminders: ref([]),
   }),
   actions: {
-    addReminder(startTime, endTime) {
-      this.reminders.push({ startTime, endTime });
+    addReminder(departureTime, endTime) {
+      this.reminders.push({ departureTime, endTime });
     },
   },
 });
