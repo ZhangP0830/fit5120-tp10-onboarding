@@ -35,7 +35,7 @@ import { useRouter } from "vue-router";
 import SurburbSelect from "@/components/SurburbSelect.vue";
 
 const router = useRouter();
-
+// Change the click path
 const clickMenu = (menuItem) => {
   const key = menuItem.key;
   router.push({
@@ -47,6 +47,8 @@ const current = ref(["/"]);
 router.afterEach((to) => {
   current.value = [to.path];
 });
+
+// The details of the tab
 const items = ref([
   {
     key: "/",
@@ -69,8 +71,8 @@ const items = ref([
   {
     key: "/cloth-advice",
     icon: () => h(SkinFilled),
-    label: "Cloth Advice",
-    title: "Cloth Advice",
+    label: "Clothing Advice",
+    title: "Clothing Advice",
   },
   {
     key: "/skin-tone",

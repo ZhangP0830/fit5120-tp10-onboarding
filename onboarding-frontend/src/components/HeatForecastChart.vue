@@ -30,7 +30,7 @@ const fetchWeather = async () => {
     console.error("Failed to fetch weather data:", error);
   }
 };
-
+// Information of the chart
 const updateChart = () => {
   if (heatForecastChart.value) {
     const chart = echarts.init(heatForecastChart.value);

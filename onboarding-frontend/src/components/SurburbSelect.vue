@@ -35,7 +35,7 @@ const loadOptions = async () => {
     console.error("Error loading options:", error);
   }
 };
-
+//
 const handleChange = async (suburb) => {
   console.log(`Selected: ${suburb}`);
   value.value = suburb;
@@ -51,7 +51,6 @@ const handleChange = async (suburb) => {
 
   const lat = userLocation.userLocation.lat;
   const lon = userLocation.userLocation.lon;
-  console.log(lat, lon);
   if (lat && lon) {
     const uv_index = await getUvIndex(lat, lon);
     if (uv_index !== null) {
