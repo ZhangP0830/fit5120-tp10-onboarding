@@ -1,18 +1,50 @@
 <template>
   <div class="container">
-    <h2>Sun Protection Recommendations</h2>
+    <h2 class="title">Sun Protection Recommendations</h2>
 
-    <a-table
-      :columns="columns"
-      :data-source="protectionData"
-      bordered
-      rowKey="uvIndex"
-      class="table-style"
-    />
+    <div class="uv-index-display">
+      Current UV Index: <strong>{{ uvIndex }}</strong>
+    </div>
+
+    <div class="icon-container">
+      <div class="icon-box">
+        <img src="../assets/ico-cloth.svg" alt="Clothing" class="icon" />
+        <p class="icon-label">Clothing</p>
+      </div>
+      <div class="icon-box">
+        <img src="../assets/ico-hat.svg" alt="Hat" class="icon" />
+        <p class="icon-label">Hat</p>
+      </div>
+      <div class="icon-box">
+        <img src="../assets/ico-umbrella.svg" alt="Umbrella" class="icon" />
+        <p class="icon-label">Umbrella</p>
+      </div>
+      <div class="icon-box">
+        <img src="../assets/ico-glasses.svg" alt="Glasses" class="icon" />
+        <p class="icon-label">Glasses</p>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <a-table
+        :columns="columns"
+        :data-source="protectionData"
+        bordered
+        rowKey="uvIndex"
+        class="table-style"
+        pagination="false"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
+import { computed } from "vue";
+import { userLocationStore } from "@/store/userLocationStore";
+
+const userLocation = userLocationStore();
+const uvIndex = computed(() => userLocation.userLocation.uvIndex);
+
 const protectionData = [
   {
     uvIndex: "0 - 2",
@@ -52,9 +84,54 @@ const columns = [
 .container {
   padding: 20px;
   text-align: center;
+  max-width: 900px;
+  margin: auto;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.uv-index-display {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #d9534f;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.icon-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  width: 70px;
+  height: auto;
+}
+
+.icon-label {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
 }
 
 .table-style {
-  margin-top: 20px;
+  width: 100%;
+  max-width: 900px;
 }
 </style>

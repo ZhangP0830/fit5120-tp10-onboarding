@@ -1,9 +1,12 @@
 <template>
   <div class="container">
-    <SunscreenInfo />
-    <ReminderSetup />
+    <img src="../assets/sunscreen2.jpg" class="left-image" />
+    <div class="right-box">
+      <SunscreenInfo />
+      <ReminderSetup />
+      <ReminderInfo />
+    </div>
   </div>
-  <ReminderInfo />
 </template>
 
 <script setup>
@@ -15,10 +18,20 @@ import ReminderInfo from "@/components/ReminderInfo.vue";
 <style scoped>
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: stretch;
   gap: 20px;
-  max-width: 900px;
+  width: 80%;
   margin: 20px auto;
+}
+
+.right-box {
+  gap: 20px;
+}
+
+.left-image {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
 }
 </style>

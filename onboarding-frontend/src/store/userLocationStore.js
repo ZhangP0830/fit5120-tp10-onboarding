@@ -6,7 +6,7 @@ export const userLocationStore = defineStore("userLocation", {
       Suburb: "Not Set",
       lat: null,
       lon: null,
-      uvIndex: null,
+      uvIndex: 0,
     },
   }),
   getters: {
