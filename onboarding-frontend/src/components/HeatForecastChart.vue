@@ -11,7 +11,7 @@ import { getWeatherForecast } from "@/api/data";
 const heatForecastChart = ref(null);
 const weatherData = ref([]);
 const store = userLocationStore();
-
+//Request the weather data from backend.
 const fetchWeather = async () => {
   try {
     const lat = store.userLocation.lat;
@@ -30,7 +30,7 @@ const fetchWeather = async () => {
     console.error("Failed to fetch weather data:", error);
   }
 };
-// Information of the chart
+// Update the information of chart
 const updateChart = () => {
   if (heatForecastChart.value) {
     const chart = echarts.init(heatForecastChart.value);
