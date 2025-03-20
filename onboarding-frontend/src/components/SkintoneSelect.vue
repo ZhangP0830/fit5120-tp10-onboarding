@@ -27,7 +27,6 @@ const options = [
 ];
 
 const handleChange = (value) => {
-  console.log("Selected Skintone:", value);
   userInformation.setSkintone(value);
 };
 </script>
