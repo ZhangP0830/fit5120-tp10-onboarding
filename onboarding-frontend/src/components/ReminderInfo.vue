@@ -37,14 +37,11 @@ const formattedEndTime = computed(() =>
 
 <style scoped>
 .reminder-info {
-  margin-top: 20px;
-  padding: 15px;
-  border: 2px solid #007bff;
-  border-radius: 8px;
-  text-align: center;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #eaf5ff;
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 </style>

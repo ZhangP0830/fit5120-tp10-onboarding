@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "@/pages/HomePage.vue";
 import UvImpactPage from "@/pages/UvImpactPage.vue";
 import ClothAdvicePage from "@/pages/ClothAdvicePage.vue";
-import ReminderSetPage from "@/pages/ReminderSetPage.vue";
 import Sunscreen_Page from "@/pages/Sunscreen_Page.vue";
+import SkinTonePage from "@/pages/SkinTonePage.vue";
 
 const routes = [
   {
@@ -27,9 +27,9 @@ const routes = [
     component: ClothAdvicePage,
   },
   {
-    path: "/sunscreen/reminder",
-    name: "reminder",
-    component: ReminderSetPage,
+    path: "/skin-tone",
+    name: "skin-tone",
+    component: SkinTonePage,
   },
 ];
 

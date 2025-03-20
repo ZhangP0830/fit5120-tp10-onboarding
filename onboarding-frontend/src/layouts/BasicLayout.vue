@@ -30,7 +30,7 @@ import GlobalHeader from "@/components/GlobalHeader.vue";
 }
 
 .content-container {
-  width: 90%;
+  width: 100%;
 }
 
 #basic-layout .header {

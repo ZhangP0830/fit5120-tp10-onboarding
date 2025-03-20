@@ -24,8 +24,8 @@
       />
     </div>
     <a-button type="primary" @click="setReminder" class="reminder-button"
-      >Set Reminder</a-button
-    >
+      >Set Reminder
+    </a-button>
   </div>
 </template>
 
@@ -84,13 +84,10 @@ const setReminder = () => {
 .reminder-box {
   flex: 1;
   padding: 20px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .input-row {
