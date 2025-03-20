@@ -79,9 +79,6 @@ const items = ref([
     title: "Skin Tone",
   },
 ]);
-/*
- * Select user location
- * */
 </script>
 
 <style scoped>
