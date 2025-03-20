@@ -26,7 +26,7 @@ export default defineComponent({
   setup() {
     const userLocation = userLocationStore();
     const uvIndex = computed(() => userLocation.userLocation.uvIndex);
-
+    // Set the information of the different uv index.
     const uvAdvice = computed(() => {
       if (uvIndex.value < 3) return "Low UV: No special protection needed.";
       if (uvIndex.value < 6) return "Moderate UV: Use SPF 30+ sunscreen.";
@@ -35,7 +35,7 @@ export default defineComponent({
         return "Very High UV: Avoid direct sun exposure, use strong protection.";
       return "Extreme UV: Stay indoors or seek shade.";
     });
-
+    // Set uv range and teaspoons amount.
     const teaspoonsData = [
       { uvRange: [0, 2.99], teaspoons: [7, 7, 0, 0, 0, 0] },
       { uvRange: [3, 4.99], teaspoons: [7, 7, 7, 7, 7, 7] },
@@ -51,7 +51,7 @@ export default defineComponent({
       );
       return range ? range.teaspoons[skinType - 1] : "N/A";
     };
-
+    // Display the different skin tone with image and text.
     const skinTones = [
       {
         image: new URL("../assets/skin-type-1.png", import.meta.url).href,

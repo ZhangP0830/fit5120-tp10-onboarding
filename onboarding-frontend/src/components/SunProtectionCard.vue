@@ -20,7 +20,6 @@ const sunProtectionAdvice = computed(() => {
   if (uv_index == null || skintone == null) {
     return "Please select your location and skintone.";
   }
-  console.log("uv_index: ", uv_index, "  ", "skintone: ", skintone);
   if (skintone >= 3 && uv_index >= 0 && uv_index <= 3) {
     number = 0;
     console.log("number: ", number);

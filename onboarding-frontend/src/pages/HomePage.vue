@@ -1,17 +1,18 @@
 <template>
   <div id="home-page">
     <h1 class="left-align">Are you well protected under the sun?</h1>
+    <!--  This is the beach image   -->
     <div class="image-container">
       <img src="../assets/beach.jpeg" alt="Beach Photo" class="beach-photo" />
     </div>
-
+    <!-- This is the input box of select suburb and the gauge of uv visual -->
     <div class="uv-index-section">
       <h2 class="left-align">UV Index</h2>
       <p class="left-align">Please select a location to check the UV index:</p>
       <SurburbSelect class="suburb-select" />
       <UvVisual class="uv-visual" />
     </div>
-
+    <!--  The color of uv index level  -->
     <div class="uv-legend">
       <div class="uv-box low">0-2<br />Low</div>
       <div class="uv-box moderate">3-5<br />Moderate</div>
@@ -19,7 +20,7 @@
       <div class="uv-box very-high">8-10<br />Very High</div>
       <div class="uv-box extreme">11+<br />Extreme</div>
     </div>
-
+    <!-- line chart of heat forecast -->
     <div class="heat-forecast-section">
       <h2 class="left-align">Forecast of Heat</h2>
       <p class="left-align">

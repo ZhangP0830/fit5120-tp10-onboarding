@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <h2 class="title">Sun Protection Recommendations</h2>
-
+    <!--  This is the current uv index  -->
     <div class="uv-index-display">
       Current UV Index: <strong>{{ uvIndex }}</strong>
     </div>
-
+    <!--  These are the icon of different cloth  -->
     <div class="icon-container">
       <div class="icon-box">
         <img src="../assets/ico-cloth.svg" alt="Clothing" class="icon" />
@@ -24,7 +24,7 @@
         <p class="icon-label">Glasses</p>
       </div>
     </div>
-
+    <!--  This div contains the table of cloth in different uv index  -->
     <div class="table-container">
       <a-table
         :columns="columns"
@@ -44,7 +44,7 @@ import { userLocationStore } from "@/store/userLocationStore";
 
 const userLocation = userLocationStore();
 const uvIndex = computed(() => userLocation.userLocation.uvIndex);
-
+// Suggestion of clothing with different uv index.
 const protectionData = [
   {
     uvIndex: "0 - 2",

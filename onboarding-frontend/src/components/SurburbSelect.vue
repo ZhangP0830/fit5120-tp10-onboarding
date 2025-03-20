@@ -21,7 +21,7 @@ import { fetchLocationData, getUvIndex } from "@/api/data";
 const options = ref([]);
 const value = ref(null);
 const userLocation = userLocationStore();
-
+// Load the options from file.
 const loadOptions = async () => {
   try {
     const response = await fetch("/states.txt");
@@ -35,7 +35,7 @@ const loadOptions = async () => {
     console.error("Error loading options:", error);
   }
 };
-//
+// When change the suburb, will request the data from backend and store it in the global
 const handleChange = async (suburb) => {
   console.log(`Selected: ${suburb}`);
   value.value = suburb;
